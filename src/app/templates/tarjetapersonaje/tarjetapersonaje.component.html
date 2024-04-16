@@ -1,0 +1,31 @@
+<div (click)="irADetalle(heroe.id)">
+<mat-card  class="example-card h-[430px] w-[300px] relative">
+  <mat-card-header>
+    <mat-card-title>{{heroe.name}}</mat-card-title>
+  </mat-card-header>
+  <div class="relative">
+    @if(heroe.thumbnail.extension=='blob'){
+      <img   class="aspect-square" mat-card-image src="{{heroe.thumbnail.path}}" alt="{{heroe.name}}">
+    }@else {
+      <img   class="aspect-square" mat-card-image src="{{heroe.thumbnail.path}}.{{heroe.thumbnail.extension}}" alt="{{heroe.name}}">
+    }
+
+    @if(heroe.fav){<i (click)="modificarFav(heroe)" class="icon-[material-symbols--favorite] bg-yellow-400 z-10 absolute top-2 left-2 w-6 h-6"></i>}
+    @else{<i (click)="modificarFav( heroe)" class="icon-[material-symbols--favorite-outline] z-10 absolute top-2 left-2 w-6 h-6"></i>}
+
+    <i class="icon-[ph--trash-fill] text-red-700 z-10 absolute top-2 right-2 w-6 h-6" (click)="eliminarHeroe(heroe.id)"></i>
+  </div>
+  <mat-card-content >
+    @if(heroe.description){
+      <p class="overflow-ellipsis overflow-hidden line-clamp-3">
+        {{heroe.description}}
+        </p>
+    }@else {
+      <p class="overflow-ellipsis overflow-hidden line-clamp-3">
+        No hay descripcion para este Super heroe
+        </p>
+    }
+  </mat-card-content>
+
+</mat-card>
+</div>

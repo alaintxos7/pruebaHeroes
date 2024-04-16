@@ -1,0 +1,91 @@
+<section class="flex flex-col justify-center items-center ">
+  <h1 class=" text-4xl">{{titulo}}</h1>
+  <form [formGroup]="heroesForm"  class="w-full max-w-lg">
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Nombre
+        </label>
+        <input type="text" formControlName="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+        @if(heroesForm.get('name')!.invalid && heroesForm.get('name')!.touched){<p class="text-red-500 text-xs italic">
+          Por favor, ingresa un nombre válido.
+        </p>}
+
+      </div>
+      <div class="w-full px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Descripción
+        </label>
+        <textarea formControlName="description" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" rows="4"></textarea>
+       @if(heroesForm.get('description')!.invalid && heroesForm.get('description')!.touched){<p class="text-red-500 text-xs italic">
+        Por favor, ingresa una descripción válida.
+      </p>}
+      </div>
+      <div class="w-full px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          IMAGEN
+        </label>
+        <div class="w-full pb-3">
+
+         @if(imagen.path==''){
+          <input type="file" [ngModelOptions]="{standalone: true}" [(ngModel)]="imagenFichero" #fileInput style="display: none;" (change)="subirArchivo($event)">
+          <button class="w-full bg-sky-800 text-yellow-300 px-5 py-2 rounded-xl flex justify-center items-center gap-3" (click)="fileInput.click()" >Selecciona una imagen <i class="icon-[majesticons--paper-clip-line]"></i></button>
+         }@else {
+          <div class=" text-black px-5 py-2 rounded-xl flex justify-start items-center gap-3"  >Imagen seleccionada <i class="icon-[ph--trash-fill] text-red-700 w-6 h-6" (click)="imagen={path:'', extension:''}"></i></div>
+         }
+
+        </div>
+
+      </div>
+      <div class="w-full px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          COMICS EN LOS QUE APARECE
+        </label>
+        <div class="relative ">
+          <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="nombreComic" placeholder="Añade nuevo comic"  class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+          <i class="icon-[mdi--plus-box] text-red-700 z-10 absolute top-2 right-2 w-6 h-6" (click)="anadirComic(nombreComic)"></i>
+        </div>
+        @if(listaComics.length>0){
+        <mat-list role="list">
+          @for(comic of listaComics; track $index){
+            <div class="relative">
+              <mat-list-item role="listitem">{{comic.name}}</mat-list-item>
+              <i class="icon-[ph--trash-fill] text-red-700 z-10 absolute top-2 right-2 w-6 h-6" (click)="eliminarComic(comic.name)"></i>
+            </div>
+          }
+        </mat-list>
+      }
+      </div>
+      <div class="w-full px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          PELICULAS EN LAS QUE PARTICIPO
+        </label>
+        <div class="relative ">
+          <input type="text" [ngModelOptions]="{standalone: true}" placeholder="Añade nuevo comic" [(ngModel)]="nombrePelicula" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+          <i class="icon-[mdi--plus-box] text-red-700 z-10 absolute top-2 right-2 w-6 h-6" (click)="anadirPelicula(nombrePelicula)"></i>
+        </div>
+        @if(listaPeliculas.length>0){
+        <mat-list class="pb-2 pt-0" role="list">
+          @for(pelicula of listaPeliculas; track $index){
+            <div class="relative">
+              <mat-list-item class="h-[33px]" role="listitem">{{pelicula.name}}</mat-list-item>
+              <i class="icon-[ph--trash-fill] text-red-700 z-10 absolute top-2 right-2 w-6 h-6" (click)="eliminarpelicula(pelicula.name)"></i>
+            </div>
+          }
+        </mat-list>
+      }
+      </div>
+      <!-- Otros campos del formulario -->
+    </div>
+    <div class="flex justify-end">
+      <button class="w-full bg-sky-800 text-yellow-300 px-5 py-2 rounded-xl flex justify-center items-center gap-3"  (click)="onSubmit()" >Guardar </button>
+    </div>
+  </form>
+  <div class="flex flex-col justify-center  px-4 py-5 w-[90%]">
+
+  <div class="flex justify-center flex-wrap gap-5 px-4 py-5">
+
+  </div>
+  </div>
+
+  </section>

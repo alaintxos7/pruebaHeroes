@@ -1,0 +1,54 @@
+.tarjeta{
+  display: flex;
+  width: 15vw;
+  gap: 10px;
+  height: 200px;
+  min-width: 350px;
+
+}
+.tarjeta .name{
+  font-size: 20px;
+  padding-bottom:10px ;
+  font-weight: 500;
+}
+.tarjeta .titulo{
+  font-size: 10px;
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+.tarjeta .status{
+  font-size: 13px;
+  padding: 2px 0;
+  font-weight: 200;
+}
+.tarjeta .texto{
+  font-size: 12px;
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 5px;
+
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding-top: 15px;
+}
+.relative{
+  position: relative;
+}
+  .fav{
+    position: absolute;
+bottom: 10px;
+left: 150px;
+    border-radius: 50%;
+    background-color: white;
+    padding: 4px 5px;
+
+
+}
+
+
+
+

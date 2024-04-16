@@ -1,0 +1,27 @@
+<section class="flex flex-col justify-center items-center ">
+  <h1 class=" text-4xl">Mi lista de Super Heroes</h1>
+
+
+  @if(!cargandoImagenes){
+  <div class="flex flex-col justify-center  px-4 py-5 w-[90%]">
+    <div class=" flex items-end justify-end pr-12">
+      <app-filtro (nombreSeleccionado)="filtrarNombre($event)" [heroes]="listaHeroes" />
+      <button (click)="crearNuevoHeroe()" class=" h-[60px] w-[270px] text-[18px]  text-black bg-red-600 rounded-md border-black flex justify-evenly items-center">
+      <i  class="icon-[ph--plus-bold] text-black  w-6 h-6"></i>Crear nuevo heroe</button>
+    </div>
+
+    <div class="flex justify-center flex-wrap gap-5 px-4 py-5">
+    @for( heroe of listaHeroes | buscarheroe:nombreHeroe; track $index  ){
+      <app-tarjetapersonaje (eliminarHeroes)="eliminarHeroe($event)" [heroe]="heroe"></app-tarjetapersonaje>
+
+  }
+</div>
+</div>
+}@else {
+  <div class="fixed top-0 left-0 w-full h-full bg-white opacity-75 z-50 flex justify-center items-center">
+    <mat-spinner diameter="100"></mat-spinner>
+  </div>
+
+}
+
+</section>

@@ -1,0 +1,32 @@
+
+.panelcentro{
+  display: flex;
+padding-right: 1rem;
+  justify-content: end;
+  align-items: center;
+  z-index: 2;
+}
+.filtro{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filtro input{
+  height: 60px;
+  width: 300px;
+  font-size: 14px;
+  color: black;
+  background-color: white;
+  border-radius: 6px;
+  border: 2px solid black;
+  padding: 0 70px ;
+}
+
+::placeholder {
+  color: black;
+  font-size: 18px;
+
+}
+
